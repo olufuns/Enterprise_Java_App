@@ -1,0 +1,11 @@
+variable "ami-redhat-id" {}
+variable "instance_type" {}
+variable "prod-lt-sg" {}
+variable "keypair_name" {}
+variable "prod-asg-name" {}
+variable "vpc-zone-identifier" {}
+#variable "tg-arn" {}
+variable "asg-policy" {}
+variable "nexus-ip" {}
+variable "newrelic-user-licence" {}
+variable "newrelic-acct-id" {}
