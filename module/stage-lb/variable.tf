@@ -1,0 +1,10 @@
+variable "stage_tg_name" {}
+variable "port_proxy" {}
+variable "vpc_id" {}
+variable "stage_alb_name" {}
+variable "security_group" {}
+variable "subnet_id" {}
+variable "tag-stage-alb" {}
+variable "http_port" {}
+variable "https_port" {}
+variable "certificate_arn" {}

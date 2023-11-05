@@ -1,0 +1,11 @@
+variable "db_name" {}
+variable "engine" {}
+variable "db-sg-name" {}
+variable "instance_type" {}
+variable "vpc_id" {}
+variable "dbusername" {}
+variable "dbpassword" {}
+variable "parameter-group-name" {}
+variable "vpc_sg_ids" {}
+variable "tag-prvsn1" {}
+variable "tag-prvsn2" {}
