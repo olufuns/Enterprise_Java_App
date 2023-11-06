@@ -1,5 +1,5 @@
 locals {
-  name = "pacaadpet"
+  name = "peniel"
 }
 # provider "vault" {
 #   token   = "s.vwUQMkQT4Hk6ebaCfahtGmS8"
@@ -188,8 +188,8 @@ module "prod-lb" {
 
 module "route53" {
   source            = "./module/route53"
-  domain-name       = "greatminds.sbs"
-  domain-name1      = "stage.greatminds.sbs"
+  domain-name       = "olufunsoojo.com"
+  domain-name1      = "stage.olufunsoojo.com"
   stage_lb_dns_name = module.stage-lb.stage-alb-dns
   stage_lb_zoneid   = module.stage-lb.stage-alb-zone-id
   domain-name2      = "prod.greatminds.sbs"
@@ -199,6 +199,6 @@ module "route53" {
 
 module "acm" {
   source       = "./module/acm"
-  domain_name  = "greatminds.sbs"
-  domain_name2 = "*.greatminds.sbs"
+  domain_name  = "olufunsoojo.com"
+  domain_name2 = "*.olufunsoojo.com"
 }
