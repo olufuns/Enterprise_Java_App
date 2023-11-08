@@ -1,10 +1,10 @@
 locals {
   name = "peniel"
 }
-# provider "vault" {
-#   token   = "s.vwUQMkQT4Hk6ebaCfahtGmS8"
-#   address = "https://greatminds.sbs"
-# }
+ provider "vault" {
+   token   = "s.vwUQMkQT4Hk6ebaCfahtGmS8"
+   address = "https://olufunsoojo.com"
+ }
 
 module "vpc" {
   source                  = "./module/vpc"
@@ -54,8 +54,8 @@ module "jenkins" {
   jenkins-elb           = "${local.name}-jenkins-elb"
   subnet-id             = [module.vpc.pubsub01-id]
   nexus-ip              = module.nexus.nexus_ip
-  newrelic-user-licence = ""
-  newrelic-acct-id      = ""
+  newrelic-user-licence = "eu01xx91603855fb7b72ce392e1e4389FFFFNRAL"
+  newrelic-acct-id      = "4102579"
 }
 
 module "asg-stage" {
@@ -65,12 +65,12 @@ module "asg-stage" {
   stage-lt-sg         = [module.vpc.docker-sg]
   keypair_name        = module.vpc.keypairid
   vpc-zone-identifier = [module.vpc.prvtsub01, module.vpc.prvtsub02]
-  #tg-arn                = ""
+  tg-arn              = [module.stage-lb.stage-target-arn]
   stage-asg-name        = "stage-asg"
   asg-policy            = "asg-policy"
   nexus-ip              = module.nexus.nexus_ip
-  newrelic-user-licence = ""
-  newrelic-acct-id      = ""
+  newrelic-user-licence = "eu01xx91603855fb7b72ce392e1e4389FFFFNRAL"
+  newrelic-acct-id      = "4102579"
 }
 
 module "asg-prod" {
@@ -80,12 +80,12 @@ module "asg-prod" {
   prod-lt-sg          = [module.vpc.docker-sg]
   keypair_name        = module.vpc.keypairid
   vpc-zone-identifier = [module.vpc.prvtsub01, module.vpc.prvtsub02]
-  #tg-arn                = "[]"
+  tg-arn                = [module.prod-lb.prod-target-arn]
   prod-asg-name         = "prod-asg"
   asg-policy            = "asg-policy"
   nexus-ip              = module.nexus.nexus_ip
-  newrelic-user-licence = "NRAK-81D5A0VU3I67CXWHC7ENSQE45IK"
-  newrelic-acct-id      = "4091023"
+  newrelic-user-licence = "eu01xx91603855fb7b72ce392e1e4389FFFFNRAL"
+  newrelic-acct-id      = "4102579"
 }
 
 module "sonarqube" {
@@ -137,9 +137,9 @@ module "nexus" {
   account_id       = ""
 }
 
-# data "vault_generic_secret" "mydb_secret" {
-#   path = "secret/database"
-# }
+ data "vault_generic_secret" "mydb_secret" {
+  path = "secret/database"
+}
 
 
 module "database" {
@@ -149,8 +149,8 @@ module "database" {
   db-sg-name           = "${local.name}-db-sng"
   instance_type        = "db.t3.micro"
   vpc_id               = module.vpc.vpc-id
-  dbusername           = "admin"    #data.vault_generic_secret.mydb_secret.data["username"]
-  dbpassword           = "admin123" #data.vault_generic_secret.mydb_secret.data["password"]
+  dbusername           = data.vault_generic_secret.mydb_secret.data["username"]
+  dbpassword           = data.vault_generic_secret.mydb_secret.data["password"]
   parameter-group-name = "default.mysql8.0"
   vpc_sg_ids           = module.vpc.mysql-sg
   tag-prvsn1           = module.vpc.prvtsub01
