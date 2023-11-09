@@ -1,8 +1,8 @@
 variable "aws_region" {
-  default = "eu-west-3"
+  default = "eu-west-2"
 }
 variable "profile" {
-  default = "Groupaccess"
+  default = "default"
 }
 variable "keypair_name" {
   default = "vault"
@@ -26,16 +26,16 @@ variable "port_https" {
   default = 443
 }
 variable "vault-ami" {
-  default = "ami-00983e8a26e4c9bd9"
+  default = "ami-0505148b3591e4c07"
 }
 variable "instance_type" {
   default = "t3.medium"
 }
 variable "domain_name" {
-  default = "greatminds.sbs"
+  default = "olufunsoojo.com"
 }
 variable "email" {
-  default = "gm@gmail.com"
+  default = "ojoolufunso@yahoo.co.uk"
 }
 variable "api_key" {
   default = ""

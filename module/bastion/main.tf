@@ -7,9 +7,14 @@ resource "aws_instance" "bastion" {
   key_name                       = var.key_name
   user_data                     = <<-EOF
   #!/bin/bash
-  echo "${var.private_keypair_path}" >> /home/ec2-user/keypair
-  chmod 400 /home/ec2-user/keypair
-  sudo hostnamectl set-hostname bastion
+  echo "pubkeyAcceptedkeyTypes=+ssh-rsa" >> /etc/ssh/sshd_config.d/10-insecure-rsa-keysig.conf
+  systemctl reload sshd
+  echo "${var.private_keypair_path}" >> /home/ec2-user/.ssh/id_rsa
+  chown ec2-user /home/ec2-user/.ssh/id_rsa
+  chgrp ec2-user /home/ec2-user/.ssh/id_rsa
+  chmod 600 /home/ec2-user/.ssh/id_rsa
+  sudo hostnamectl set-hostname Bastion
+  #!/bin/bash
   EOF
   tags = {
     Name = var.tag-bastion
