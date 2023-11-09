@@ -2,7 +2,7 @@ locals {
   name = "peniel"
 }
  provider "vault" {
-   token   = "s.vwUQMkQT4Hk6ebaCfahtGmS8"
+   token   = ""
    address = "https://olufunsoojo.com"
  }
 
