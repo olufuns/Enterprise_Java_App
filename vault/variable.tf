@@ -38,8 +38,8 @@ variable "email" {
   default = "ojoolufunso@yahoo.co.uk"
 }
 variable "api_key" {
-  default = ""
+  default = "NRAK-7T56EHIQMSTBG9TD12CY9W2MUUG"
 }
 variable "account_id" {
-  default = ""
+  default = "4102579"
 }
