@@ -2,7 +2,7 @@ locals {
   name = "peniel"
 }
  provider "vault" {
-   token   = ""
+   token   = "s.vwkDgdG7tOkoQvOakMyhB1ZO"
    address = "https://penielpalm.online"
  }
 
@@ -11,10 +11,10 @@ module "vpc" {
   vpc-cidr                = "10.0.0.0/16"
   tag-vpc                 = "${local.name}-vpc"
   pubsub01-cidr           = "10.0.1.0/24"
-  az1                     = "eu-west-3a"
+  az1                     = "eu-west-2a"
   tag-pubsub01            = "${local.name}-pubsub01"
   pubsub02-cidr           = "10.0.2.0/24"
-  az2                     = "eu-west-3b"
+  az2                     = "eu-west-2b"
   tag-pubsub02            = "${local.name}-pubsub02"
   prvtsub01-cidr          = "10.0.3.0/24"
   tag-prvtsub01           = "${local.name}-prvtsub01"
@@ -45,7 +45,7 @@ module "vpc" {
 
 module "jenkins" {
   source                = "./module/jenkins"
-  ami                   = "ami-0d767e966f3458eb5"
+  ami                   = "ami-077fcd53ac5622b57"
   instance_type         = "t2.medium"
   prt_subnet            = module.vpc.prvtsub01
   security_group        = [module.vpc.Jenkins_SG.id]
@@ -60,7 +60,7 @@ module "jenkins" {
 
 module "asg-stage" {
   source              = "./module/asg-stage"
-  ami-redhat-id       = "ami-0d767e966f3458eb5"
+  ami-redhat-id       = "ami-077fcd53ac5622b57"
   instance_type       = "t2.medium"
   stage-lt-sg         = [module.vpc.docker-sg]
   keypair_name        = module.vpc.keypairid
@@ -75,7 +75,7 @@ module "asg-stage" {
 
 module "asg-prod" {
   source              = "./module/asg-prod"
-  ami-redhat-id       = "ami-0d767e966f3458eb5"
+  ami-redhat-id       = "ami-077fcd53ac5622b57"
   instance_type       = "t2.medium"
   prod-lt-sg          = [module.vpc.docker-sg]
   keypair_name        = module.vpc.keypairid
@@ -90,7 +90,7 @@ module "asg-prod" {
 
 module "sonarqube" {
   source           = "./module/sonarqube"
-  ami_ubuntu       = "ami-00983e8a26e4c9bd9"
+  ami_ubuntu       = "ami-0505148b3591e4c07"
   instance_type    = "t2.medium"
   key_name         = module.vpc.keypairid
   sonarqube-sg     = module.vpc.sonarqube-sg
@@ -100,7 +100,7 @@ module "sonarqube" {
 
 module "ansible" {
   source             = "./module/ansible"
-  ami_redhat         = "ami-0d767e966f3458eb5"
+  ami_redhat         = "ami-077fcd53ac5622b57"
   instance_type      = "t2.medium"
   subnet_id          = module.vpc.pubsub02-id
   bastion-ansible-sg = module.vpc.bastion-ansible-sg
@@ -116,7 +116,7 @@ module "ansible" {
 
 module "bastion" {
   source               = "./module/bastion"
-  ami_redhat           = "ami-0d767e966f3458eb5"
+  ami_redhat           = "ami-077fcd53ac5622b57"
   instance_type        = "t2.micro"
   subnet_id            = module.vpc.pubsub02-id
   bastion-ansible-sg   = module.vpc.bastion-ansible-sg
@@ -127,7 +127,7 @@ module "bastion" {
 
 module "nexus" {
   source           = "./module/nexus_server"
-  redhat_ami       = "ami-0d767e966f3458eb5"
+  redhat_ami       = "ami-077fcd53ac5622b57"
   instance_type_t2 = "t2.medium"
   nexus_sg         = [module.vpc.nexus-sg]
   subnet_id        = module.vpc.pubsub01-id

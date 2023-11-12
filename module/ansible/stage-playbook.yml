@@ -1,4 +1,5 @@
-- hosts: webservers
+---
+ - hosts: webservers
    become: true
    vars_files:
     - ansible_vars_file.yml

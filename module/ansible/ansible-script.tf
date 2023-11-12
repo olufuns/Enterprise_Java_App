@@ -37,7 +37,7 @@ sudo chmod 755 /etc/ansible/prod-bash-script.sh
 echo "*/5 * * * * ec2-user sh /etc/ansible/stage-bash-script.sh" > /etc/crontab
 echo "*/5 * * * * ec2-user sh /etc/ansible/prod-bash-script.sh" >> /etc/crontab
 # adding newrelic agent to ansible server
-curl -Ls https://download.newrelic.com/install/newrelic-cli/scripts/install.sh | bash && sudo  NEW_RELIC_API_KEY=NRAK-V57JZ8RP5FVWHZR7US50J3NCR7R NEW_RELIC_ACCOUNT_ID=3929947 /usr/local/bin/newrelic install -y
+curl -Ls https://download.newrelic.com/install/newrelic-cli/scripts/install.sh | bash && sudo NEW_RELIC_API_KEY=NRAK-7T56EHIQMSTBG9TD12CY9W2MUUG NEW_RELIC_ACCOUNT_ID=4102579 NEW_RELIC_REGION=EU /usr/local/bin/newrelic install -y
 sudo hostnamectl set-hostname ansible
 EOF
 }
