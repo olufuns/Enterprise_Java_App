@@ -24,13 +24,13 @@ resource "aws_elb" "lb" {
     lb_protocol       = "http"
   }
 
-  # listener {
-  #   instance_port      = 8000
-  #   instance_protocol  = "http"
-  #   lb_port            = 443
-  #   lb_protocol        = "https"
-  #   ssl_certificate_id = "arn:aws:iam::123456789012:server-certificate/certName"
-  # }
+   #listener {
+    # instance_port      = 8000
+     #instance_protocol  = "http"
+     #lb_port            = 443
+     #lb_protocol        = "https"
+     #ssl_certificate_id = "arn:aws:iam::123456789012:server-certificate/certName"
+   #}
 
   health_check {
     healthy_threshold   = 2

@@ -3,7 +3,7 @@ locals {
 }
  provider "vault" {
    token   = ""
-   address = "https://olufunsoojo.com"
+   address = "https://penielpalm.online"
  }
 
 module "vpc" {
@@ -188,17 +188,17 @@ module "prod-lb" {
 
 module "route53" {
   source            = "./module/route53"
-  domain-name       = "olufunsoojo.com"
-  domain-name1      = "stage.olufunsoojo.com"
+  domain-name       = "penielpalm.online"
+  domain-name1      = "stage.penielpalm.online"
   stage_lb_dns_name = module.stage-lb.stage-alb-dns
   stage_lb_zoneid   = module.stage-lb.stage-alb-zone-id
-  domain-name2      = "prod.greatminds.sbs"
+  domain-name2      = "prod.penielpalm.online"
   prod_lb_dns_name  = module.prod-lb.prod-alb-dns
   prod_lb_zoneid    = module.prod-lb.prod-alb-zone-id
 }
 
 module "acm" {
   source       = "./module/acm"
-  domain_name  = "olufunsoojo.com"
-  domain_name2 = "*.olufunsoojo.com"
+  domain_name  = "penielpalm.online"
+  domain_name2 = "*.penielpalm.online"
 }
