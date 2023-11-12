@@ -32,7 +32,7 @@ variable "instance_type" {
   default = "t3.medium"
 }
 variable "domain_name" {
-  default = "olufunsoojo.com"
+  default = "penielpalm.online"
 }
 variable "email" {
   default = "ojoolufunso@yahoo.co.uk"
