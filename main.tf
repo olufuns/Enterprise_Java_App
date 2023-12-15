@@ -2,46 +2,11 @@ locals {
   name = "peniel"
 }
  provider "vault" {
-   token   = "s.vwkDgdG7tOkoQvOakMyhB1ZO"
+   token   = "s.rsd2iB40FXFy7zo8YRigSAlQ"
    address = "https://penielpalm.online"
  }
 
-module "vpc" {
-  source                  = "./module/vpc"
-  vpc-cidr                = "10.0.0.0/16"
-  tag-vpc                 = "${local.name}-vpc"
-  pubsub01-cidr           = "10.0.1.0/24"
-  az1                     = "eu-west-2a"
-  tag-pubsub01            = "${local.name}-pubsub01"
-  pubsub02-cidr           = "10.0.2.0/24"
-  az2                     = "eu-west-2b"
-  tag-pubsub02            = "${local.name}-pubsub02"
-  prvtsub01-cidr          = "10.0.3.0/24"
-  tag-prvtsub01           = "${local.name}-prvtsub01"
-  prvtsub02-cidr          = "10.0.4.0/24"
-  tag-prvtsub02           = "${local.name}-prvtsub02"
-  tag-igw                 = "${local.name}-igw"
-  cidr-all                = "0.0.0.0/0"
-  tag-public-subnet-RT    = "${local.name}-pubsubrt"
-  tag-EIP                 = "${local.name}-eip"
-  tag-nat-gateway         = "${local.name}-natgateway"
-  tag-private-route-table = "${local.name}-prvrt"
-  port_ssh                = "22"
-  port_sonar              = "9000"
-  sonarqube-sg            = "${local.name}-sonarqube-sg"
-  port_http               = "80"
-  Jenkins_SG              = "${local.name}-jenkins-sg"
-  bastion-ansible-sg      = "${local.name}-bastion-ansible-sg"
-  Nexus_SG                = "${local.name}-nexus-sg"
-  port_nexus              = "8081"
-  port_nexus2             = "8085"
-  RDS_SG                  = "${local.name}-mysql-sg"
-  mysql_port              = "3306"
-  port_proxy              = "8080"
-  port_https              = "443"
-  docker-SG               = "${local.name}-docker-sg"
-  keypair_name            = "${local.name}-keypair"
-}
+
 
 module "jenkins" {
   source                = "./module/jenkins"
